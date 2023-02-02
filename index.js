@@ -43,7 +43,7 @@ function isValid(value) {
   }
 }
 
-function getDataFromUser() {
+function getNumFromUser() {
   const result = +prompt('Enter the number');
   if (isValid(result)) {
     console.log(
@@ -55,14 +55,19 @@ isEven: ${isEven(result)}
 Delimeters: ${Delimeters(result)}`);
   } else {
     console.log('Incorrect input!');
-    getDataFromUser();
+    getNumFromUser();
   }
 }
-getDataFromUser();
+getNumFromUser();
 
 //Task 2//
 function isValidSymbol(symbolValue) {
-  if (symbolValue.length > 1 && symbolValue.length < 4 && symbolValue !== '' && symbolValue !== ' ') {
+  if (
+      symbolValue.length > 0 &&
+      symbolValue.length < 4 &&
+      symbolValue !== '' &&
+      symbolValue !== ' '
+  ) {
     return true;
   } else {
     console.log('Incorrect input!');
@@ -71,7 +76,14 @@ function isValidSymbol(symbolValue) {
 }
 
 function isValidNumber(numberValue) {
-  if (typeof numberValue === 'number' && numberValue > 0 && numberValue < 10 && numberValue === parseFloat(numberValue)) {
+  if (
+      typeof numberValue === 'number' &&
+      numberValue > 0 &&
+      numberValue < 10 &&
+      Number.isFinite(numberValue) &&
+      !(Number.isNaN(numberValue)) &&
+      numberValue % 1 === 0
+  ) {
     return true;
   } else {
     console.log('Incorrect input!');
@@ -79,7 +91,7 @@ function isValidNumber(numberValue) {
   }
 }
 
-function getDataFromUserTaskTwo() {
+function getDataFromUser() {
   let symbolData = '';
   symbolData = prompt('Enter the symbol');
 
@@ -99,4 +111,4 @@ function getDataFromUserTaskTwo() {
   symbolData = symbolData + ' ';
   console.log(`${symbolData.repeat(numberData)}\n`.repeat(numberData).trim());
 }
-getDataFromUserTaskTwo();
+getDataFromUser();
