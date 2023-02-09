@@ -9,3 +9,13 @@ Array.prototype.customFilter = function (callback, obj) {
   }
   return filteredArr;
 };
+
+function createDebounceFunction(func, timeout) {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
