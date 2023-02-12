@@ -3,19 +3,20 @@ function curry(fn) {
     if (args.length >= fn.length) {
       return fn.apply(this, args);
     } else {
-      return function(...args2) {
+      return function (...args2) {
         return curried.apply(this, args.concat(args2));
       };
     }
   };
 }
 
-//-------------------------------------------------//
+//-----------------------------------------------------------------------------------
 
 function checkIsValid(value) {
-  const invalidValues = typeof value !== 'number' || isNaN(value) || !isFinite(value);
+  const invalidValues =
+    typeof value !== "number" || isNaN(value) || !isFinite(value);
   if (invalidValues) {
-    throw new Error('Invalid type of argument');
+    throw new Error("Invalid type of argument");
   }
   return true;
 }
@@ -25,7 +26,7 @@ class Calculator {
     const [value1, value2] = arguments;
 
     if (arguments.length !== 2) {
-      throw new Error('Invalid number of arguments');
+      throw new Error("Invalid number of arguments");
     }
 
     checkIsValid(value1);
@@ -69,6 +70,46 @@ class Calculator {
   }
 }
 
+//-----------------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------------//
+class RickAndMorty {
+  constructor() {}
+  getCharacter(id) {
+    if (!id || typeof id !== "number") {
+      new Error("Invalid character ID");
+    }
 
+    return new Promise((resolve, reject) => {
+      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        .then((response) => response.json())
+        .then((character) => {
+          if (!character) {
+            resolve(null);
+          }
+          resolve(character);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  async getEpisode(id) {
+    if (!id || typeof id !== "number") {
+      throw new Error("Invalid episode ID");
+    }
+
+    try {
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/episode/${id}`
+      );
+      const episode = await response.json();
+      if (!episode) {
+        return null;
+      }
+      return episode;
+    } catch (error) {
+      return null;
+    }
+  }
+}
