@@ -33,40 +33,42 @@ class Calculator {
 
     this.value1 = value1;
     this.value2 = value2;
-    this.logSum = this.logSum.bind(this);
-    this.logMul = this.logMul.bind(this);
-    this.logSub = this.logSub.bind(this);
-    this.logDiv = this.logDiv.bind(this);
+    this.getSum = this.getSum.bind(this);
+    this.getMul = this.getMul.bind(this);
+    this.getSub = this.getSub.bind(this);
+    this.getDiv = this.getDiv.bind(this);
   }
 
   setX(num) {
     checkIsValid(num);
-
     return (this.value1 = num);
   }
 
   setY(num) {
     checkIsValid(num);
-
     return (this.value2 = num);
   }
 
-  logSum() {
+  getSum() {
     return this.value1 + this.value2;
   }
 
-  logMul() {
+  getMul() {
     return this.value1 * this.value2;
   }
 
-  logSub() {
+  getSub() {
     return this.value1 - this.value2;
   }
 
-  logDiv() {
+  getDiv() {
     if (this.value2 === 0) {
-      throw new Error("you can't divide by zero");
+      throw new Error("You can't divide by zero");
     }
     return this.value1 / this.value2;
   }
 }
+
+
+//-----------------------------------------------------------------------------------//
+
