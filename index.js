@@ -54,7 +54,7 @@ class Stack {
   }
 }
 //-----
-class LinkedList {}
+
 //-----
 class Car {
   #brand = "";
