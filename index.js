@@ -310,7 +310,7 @@ class Car {
     } else if (currentDistance > distanceForCurrentFuel) {
       throw new Error("You don't have enough fuel");
     } else if (this.#health === 0 || estimateHealthValue <= 0) {
-      throw new Error(`Your car won’t make it`);
+      throw new Error("Your car won’t make it");
     } else {
       this.#currentFuelVolume = estimateFuelValue;
       this.#health = estimateHealthValue;
